@@ -1,3 +1,4 @@
+const config = require('./config');
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -7,8 +8,9 @@ const router = require('./router');
 const mongoose = require('mongoose');
 
 // Database Setup
+const mongoUri = process.env.MONGO_URI || config.mongoUri;
 mongoose.connect(
-  'mongodb://localhost:27017/auth',
+  mongoUri,
   { useNewUrlParser: true },
   () => console.log('Connected to database')
 );
